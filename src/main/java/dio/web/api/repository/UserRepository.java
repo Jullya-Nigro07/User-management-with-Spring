@@ -17,7 +17,7 @@ public class UserRepository {
     }
 
     public void deleteById(Integer id) {
-        System.out.println(String.format("DELETE/id - Recebendo o id: %d para excluir um user", id));
+        System.out.printf("DELETE/id - Recebendo o id: %d para excluir um user", id);
         System.out.println(id);
     }
 
@@ -31,12 +31,12 @@ public class UserRepository {
     }
 
     public User findById(Integer id){
-        System.out.println(String.format("FIND/id - Recebendo o id: %d para logar", id));
+        System.out.printf("FIND/id - Recebendo o id: %d para logar", id);
         return new User("Jesus", "relacionamento");
     }
 
     public User findByUsername(String username){
-        System.out.println(String.format("FIND/username - Recebendo o username: %d para logar", username));
+        System.out.printf("FIND/username - Recebendo o username: %s para logar", username);
         return new User("Jeová", "obediencia");
     }
 }
