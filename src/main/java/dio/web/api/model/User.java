@@ -1,40 +1,64 @@
 package dio.web.api.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "users")
 public class User {
-    private Integer id;
-    private String login;
-    private String password;
 
     public User(){}
 
-    public User(String login, String password){
-        this.login = login;
+    public User(String name, String email, String password){
+        this.name = name;
+        this.email = email;
         this.password = password;
     }
 
-    @Override
-    public String toString(){
-        return "User{" + "\n" +
-                "ID= " + id + "\n" +
-                "Login= '" + login + "'" + "\n" +
-                "Password= '" + password + "'" + "\n" +
-                "}";
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user")
+    private Long id;
 
-    public Integer getId() {
+    @NotBlank(message = "Name is required")
+    @Column(name = "name_user")
+    private String name;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    @Column(name = "email_user")
+    private String email;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "The password must be at least 8 characters")
+    @Column(name = "password_user")
+    private String password;
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -44,5 +68,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
