@@ -12,9 +12,9 @@ import io.swagger.v3.oas.annotations.info.Contact;
 				version = "1.0",
 				description = "API exemplo de uso de Spring Boot REST API",
 				contact = @Contact(
-						name = "Seu nome",
-						url = "https://www.seusite.com.br",
-						email = "voce@seusite.com.br"
+						name = "Métodos Http",
+						url = "https://www.metodoshttp.com.br",
+						email = "test@metodoshttp.com.br"
 				)
 		)
 )
