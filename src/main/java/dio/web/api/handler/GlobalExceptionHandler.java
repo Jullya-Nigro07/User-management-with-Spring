@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handlerBusinessException(BusinessException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("timestamp", LocalDateTime.now(),
-                        "status", 400,
+                        "status", 404,
                         "error", "Erro de négocio",
                         "message", ex.getMessage()
                 ));
