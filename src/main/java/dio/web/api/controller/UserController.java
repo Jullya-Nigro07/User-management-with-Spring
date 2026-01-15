@@ -1,41 +1,49 @@
 package dio.web.api.controller;
 
+import dio.web.api.controller.doc.UserControllerDoc;
+import dio.web.api.dto.UserCreateDTO;
+import dio.web.api.dto.UserUpdateDTO;
 import dio.web.api.model.User;
-import dio.web.api.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import dio.web.api.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-// o controller apenas da direcionamento mas nao tem a regra de negocio
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
-    @Autowired
-    private UserRepository repository;
+public class UserController implements UserControllerDoc {
 
-    @GetMapping()
-    public List<User> getUsers(){
-        return repository.findAll();
+    private final UserService service;
+
+    public UserController(UserService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{username}")
-    public User getOne(@PathVariable("username") String username){
-        return repository.findByUsername(username);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public User create(@RequestBody UserCreateDTO dtoUser) {
+        return service.create(dtoUser);
+    }
+
+    @PatchMapping("/{id}")
+    public User update(@PathVariable Long id, @RequestBody UserUpdateDTO dtoUser) {
+        return service.update(id, dtoUser);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") Integer id){
-        repository.deleteById(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 
-    @PostMapping()
-    public void postUser(@RequestBody User user){
-        repository.save(user);
+    @GetMapping
+    public List<User> findAll() {
+        return service.findAll();
     }
 
-    @PutMapping()
-    public void putUser(@RequestBody User user){
-        repository.save(user);
+    @GetMapping("/{id}")
+    public User findById(@PathVariable Long id) {
+        return service.findById(id);
     }
 }
