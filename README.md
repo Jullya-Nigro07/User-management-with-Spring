@@ -157,4 +157,12 @@ O User Management with Spring é uma API REST para gerenciamento de usuários, d
     http://localhost:8080/swagger-ui/index.html
   ```
 
+7. Consultar tabelas no PostgreSQL
+
+   ```sql
+   SELECT * FROM users;
+   
+   ```
+   
 ---
+
