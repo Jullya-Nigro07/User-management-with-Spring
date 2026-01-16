@@ -6,7 +6,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- 🔹 UM ÚNICO parent -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -15,10 +14,10 @@
 	</parent>
 
 	<groupId>dio</groupId>
-	<artifactId>my-first-web-api</artifactId>
+	<artifactId>User-management-with-Spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>my-first-web-api</name>
-	<description>First Web API</description>
+	<name>User-management-with-Spring</name>
+	<description>User management wit Spring</description>
 
 	<properties>
 		<java.version>21</java.version>
