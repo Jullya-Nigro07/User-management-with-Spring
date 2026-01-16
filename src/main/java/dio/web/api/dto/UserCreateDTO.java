@@ -20,7 +20,6 @@ public class UserCreateDTO {
     @NotBlank
     @Size(min = 8)
     @Schema
-
     private String password;
 
     public String getName() {
