@@ -1,6 +1,9 @@
 # 🍃 User management with Spring
 Sistema de gerenciamento de usuários desenvolvido com Java 21 e Spring Boot, seguindo boas práticas de arquitetura, separação de responsabilidades e documentação com OpenAPI (Swagger)
+
 ![Status](https://img.shields.io/badge/Status-Concluído-green)
+
+> 📝 **Nota:** Esse projeto foi desenvolvido durante a minha formação do curso da DIO - "Backend com Java & AWS", e foi aprimorado com base nos meus conhecimentos :)
 
 ---
 
@@ -73,6 +76,37 @@ O User Management with Spring é uma API REST para gerenciamento de usuários, d
 
 ---
 
+### ✅ Funcionalidades
+
+- CRUD de Usuários
+
+
+  - POST - Criar um novo usuário
+  - PATCH/{id} - Atualizar um usuário existente
+  - GET - Listar todos os usuários
+  - GET/{id} - Buscar usuário por id
+  - DELETE/{id} - Remover usuário
+
+
+- Tratementos global de erros
+
+
+   - Implementado com @ControllerAdvice e @ExceptionHandler
+
+
+- DTOs
+
+
+   - Proteção de dados sensíveis (ex: ID e senha)
+
+
+- Documentação da API
+
+
+   - Utilização de @Operation e @ApiResponse com OpenAPI 3
+
+---
+
 ## 🚀 Como Rodar o Projeto
 
 1. **Clone o repositório:**
@@ -124,33 +158,3 @@ O User Management with Spring é uma API REST para gerenciamento de usuários, d
   ```
 
 ---
-
-
-### ✅ Funcionalidades
-
-- CRUD de Usuários
-
-
-  - POST - Criar um novo usuário
-  - PATCH/{id} - Atualizar um usuário existente
-  - GET - Listar todos os usuários
-  - GET/{id} - Buscar usuário por id
-  - DELETE/{id} - Remover usuário
-
-
-- Tratementos global de erros
-
-
-   - Implementado com @ControllerAdvice e @ExceptionHandler
-
-
-- DTOs
-
-
-   - Proteção de dados sensíveis (ex: ID e senha)
-
-
-- Documentação da API
-
-
-   - Utilização de @Operation e @ApiResponse com OpenAPI 3
