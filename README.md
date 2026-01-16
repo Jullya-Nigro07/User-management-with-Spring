@@ -1,7 +1,7 @@
 # 🍃 User management with Spring
 Sistema de gerenciamento de usuários desenvolvido com Java 21 e Spring Boot, seguindo boas práticas de arquitetura, separação de responsabilidades e documentação com OpenAPI (Swagger)
 
-![Status](https://img.shields.io/badge/Status-Concluído-green)
+![Status](https://img.shields.io/badge/Status-Em%20Andamento-yellow)
 
 > 📝 **Nota:** Esse projeto foi desenvolvido durante a minha formação do curso da DIO - "Backend com Java & AWS", e foi aprimorado com base nos meus conhecimentos :)
 
