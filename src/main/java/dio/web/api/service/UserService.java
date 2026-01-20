@@ -1,7 +1,8 @@
 package dio.web.api.service;
 
-import dio.web.api.dto.UserCreateDTO;
-import dio.web.api.dto.UserUpdateDTO;
+import dio.web.api.dto.request.UserCreateDTO;
+import dio.web.api.dto.request.UserUpdateDTO;
+import dio.web.api.dto.response.UserResponseDTO;
 import dio.web.api.handler.BusinessException;
 import dio.web.api.handler.ResourceNotFoundException;
 import dio.web.api.model.User;
@@ -19,11 +20,14 @@ public class UserService {
     }
 
     public User create(UserCreateDTO dtoUser) {
-        User user = new User();
 
-        user.setName(dtoUser.getName());
-        user.setEmail(dtoUser.getEmail());
-        user.setPassword(dtoUser.getPassword());
+        if (repository.existsByEmail(dtoUser.email())) {
+            throw new BusinessException("Email already registered");
+        }
+        User user = new User(
+                dtoUser.name(),
+                dtoUser.email(),
+                dtoUser.password());
 
         return repository.save(user);
     }
@@ -32,32 +36,52 @@ public class UserService {
         User existing = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
-        if (dtoUser.getName() != null)
-            existing.setName((dtoUser.getName()));
+        if (dtoUser.name() != null)
+            existing.setName(dtoUser.name());
 
-        if (dtoUser.getEmail() != null)
-            existing.setEmail((dtoUser.getEmail()));
+        if (dtoUser.email() != null)
+            existing.setEmail(dtoUser.email());
 
-        if (dtoUser.getPassword() != null)
-            existing.setPassword((dtoUser.getPassword()));
+        if (dtoUser.password() != null)
+            existing.setPassword(dtoUser.password());
 
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Usuário não encontrado");
-        }
-        repository.deleteById(id);
+    public UserResponseDTO delete(Long id){
+        User user = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+
+        UserResponseDTO response = new UserResponseDTO(
+                user.getId(),
+                user.getName(),
+                user.getEmail()
+        );
+
+        repository.delete(user);
+
+        return response;
     }
 
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserResponseDTO> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(user -> new UserResponseDTO(
+                        user.getId(),
+                        user.getName(),
+                        user.getEmail()
+                ))
+                .toList();
     }
 
-    public User findById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Usuário não encontrado"));
+    public UserResponseDTO findById(Long id) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+
+        return new UserResponseDTO(
+                user.getId(),
+                user.getName(),
+                user.getEmail()
+        );
     }
 }

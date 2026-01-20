@@ -1,13 +1,15 @@
 package dio.web.api.controller.doc;
 
-import dio.web.api.dto.UserCreateDTO;
-import dio.web.api.dto.UserUpdateDTO;
+import dio.web.api.dto.request.UserCreateDTO;
+import dio.web.api.dto.request.UserUpdateDTO;
+import dio.web.api.dto.response.UserResponseDTO;
 import dio.web.api.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -32,7 +34,7 @@ public interface UserControllerDoc {
                     )
             }
     )
-    User create(UserCreateDTO dtoUser);
+    ResponseEntity<User> create(UserCreateDTO dtoUser);
 
     @Operation(
             summary = "Atualizar usuário",
@@ -65,7 +67,7 @@ public interface UserControllerDoc {
                     )
             }
     )
-    void delete(Long id);
+    ResponseEntity<UserResponseDTO> delete(Long id);
 
     @Operation(
             summary = "Listar usuários",
@@ -78,7 +80,7 @@ public interface UserControllerDoc {
                     )
             }
     )
-    List<User> findAll();
+    ResponseEntity<List<UserResponseDTO>> findAll();
 
     @Operation(
             summary = "Buscar usuário por ID",
@@ -91,9 +93,9 @@ public interface UserControllerDoc {
                     ),
                     @ApiResponse(
                             responseCode = "404",
-                            description = "Usuário não encontrado"
+                            description = "ID de usuário não encontrado"
                     )
             }
     )
-    User findById(Long id);
+    ResponseEntity<UserResponseDTO> findById(Long id);
 }
