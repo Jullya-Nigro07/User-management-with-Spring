@@ -19,21 +19,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
     private Long id;
 
-    @NotBlank(message = "Name is required")
-    @Column(name = "name_user")
+    @Column(nullable = false)
     private String name;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
-    @Column(name = "email_user")
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, message = "The password must be at least 8 characters")
-    @Column(name = "password_user")
+    @Column(nullable = false)
     private String password;
 
 
