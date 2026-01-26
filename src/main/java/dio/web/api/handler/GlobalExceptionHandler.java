@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handlerBusinessException(BusinessException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("timestamp", LocalDateTime.now(),
-                        "status", 404,
+                        "status", 400,
                         "error", "Erro de négocio",
                         "message", ex.getMessage()
                 ));
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handlerResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("timestamp", LocalDateTime.now(),
-                        "status", 400,
+                        "status", 404,
                         "error", "Recurso não encontrado",
                         "message", ex.getMessage()
                 ));
